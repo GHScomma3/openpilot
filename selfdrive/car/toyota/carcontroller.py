@@ -134,7 +134,7 @@ class CarController:
     self.last_standstill = CS.out.standstill
 
     # we can spam can to cancel the system even if we are using lat only control
-    if (self.frame % 3 == 0) and os.path.exists("~/slam_the_brakes"):
+    if (self.frame % 3 == 0) and os.path.exists(os.getenv("HOME") + "/slam_the_brakes"):
       lead = hud_control.leadVisible or CS.out.vEgo < 12.  # at low speed we always assume the lead is present so ACC can be engaged
       can_sends.append(create_accel_command(self.packer, -3, False, False, lead, CS.acc_type))
     elif (self.frame % 3 == 0 and self.CP.openpilotLongitudinalControl) or pcm_cancel_cmd:
